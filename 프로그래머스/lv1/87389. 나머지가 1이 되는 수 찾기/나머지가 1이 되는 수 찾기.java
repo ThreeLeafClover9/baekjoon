@@ -1,8 +1,9 @@
 class Solution {
     public int solution(int n) {
-        for (int i = 1; i < n; i++) {
-            if (n % i == 1) return i;
+        int index = 1;
+        while (true) {
+            if (n % index == 1) return index;
+            index++;
         }
-        return n - 1;
     }
 }
