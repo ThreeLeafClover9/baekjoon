@@ -1,7 +1,5 @@
 class Solution {
     boolean solution(String s) {
-        boolean answer = false;
-        
         int count = 0;
         s = s.toLowerCase();
         for (int i = 0; i < s.length(); i++) {
@@ -9,8 +7,6 @@ class Solution {
             if (ch == 'p') count++;
             else if (ch == 'y') count--;
         }
-        answer = count == 0 ? true : false;
-
-        return answer;
+        return count == 0 ? true : false;
     }
 }
