@@ -6,9 +6,7 @@ class Solution {
         for (String[] clothe : clothes) {
             String s = clothe[1];
             if (map.containsKey(s)) {
-                Integer integer = map.get(s);
-                integer++;
-                map.put(s, integer);
+                map.put(s, map.get(s) + 1);
             } else map.put(s, 2);
         }
         int result = 1;
