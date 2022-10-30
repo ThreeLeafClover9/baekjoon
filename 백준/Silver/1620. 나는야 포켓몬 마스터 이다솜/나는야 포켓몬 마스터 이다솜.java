@@ -2,25 +2,26 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder sb = new StringBuilder();
 
-        String[] split = br.readLine().split(" ");
-        int next = Integer.parseInt(split[0]);
-        Map<String, Integer> strMap = new HashMap<>();
-        Map<Integer, String> intMap = new HashMap<>();
-        for (int i = 1; i <= next; i++) {
+        String str = br.readLine();
+        StringTokenizer st = new StringTokenizer(str);
+        int first = Integer.parseInt(st.nextToken());
+        int last = Integer.parseInt(st.nextToken());
+        Map<String, Integer> nameMap = new HashMap<>();
+        Map<Integer, String> numMap = new HashMap<>();
+        for (int i = 0; i < first; i++) {
             String s = br.readLine();
-            strMap.put(s, i);
-            intMap.put(i, s);
+            nameMap.put(s, i + 1);
+            numMap.put(i + 1, s);
         }
-        next = Integer.parseInt(split[1]);
-        for (int i = 0; i < next; i++) {
+        for (int i = 0; i < last; i++) {
             String s = br.readLine();
-            if (strMap.containsKey(s)) bw.write(strMap.get(s) + "\n");
-            else bw.write(intMap.get(Integer.parseInt(s)) + "\n");
+            if (nameMap.containsKey(s)) sb.append(nameMap.get(s) + "\n");
+            else sb.append(numMap.get(Integer.parseInt(s)) + "\n");
         }
-        bw.close();
+        System.out.println(sb);
     }
 }
