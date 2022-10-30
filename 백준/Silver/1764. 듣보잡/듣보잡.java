@@ -2,26 +2,29 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder sb = new StringBuilder();
 
-        String[] split = br.readLine().split(" ");
-        int next = Integer.parseInt(split[0]);
+        String str = br.readLine();
+        StringTokenizer st = new StringTokenizer(str);
+        int first = Integer.parseInt(st.nextToken());
+        int last = Integer.parseInt(st.nextToken());
         Set<String> set = new HashSet<>();
-        for (int i = 0; i < next; i++) {
-            set.add(br.readLine());
+        for (int i = 0; i < first; i++) {
+            String s = br.readLine();
+            set.add(s);
         }
-        next = Integer.parseInt(split[1]);
-        Set<String> result = new TreeSet<>();
-        for (int i = 0; i < next; i++) {
-            String str = br.readLine();
-            if (set.contains(str)) result.add(str);
+        List<String> result = new ArrayList<>();
+        for (int i = 0; i < last; i++) {
+            String s = br.readLine();
+            if (set.contains(s)) result.add(s);
         }
-        bw.write(result.size() + "\n");
+        sb.append(result.size() + "\n");
+        Collections.sort(result);
         for (String s : result) {
-            bw.write(s + "\n");
+            sb.append(s).append("\n");
         }
-        bw.close();
+        System.out.println(sb);
     }
 }
