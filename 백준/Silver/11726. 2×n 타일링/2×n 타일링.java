@@ -7,13 +7,16 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int num = Integer.parseInt(br.readLine());
-        int result = logic(num, new int[num + 1]);
+        int result = logic(num);
         System.out.println(result);
     }
 
-    private static int logic(int num, int[] list) {
-        if (list[num] != 0) return list[num];
-        if (num <= 2) return num;
-        return list[num] = (list[num] + logic(num - 1, list) + logic(num - 2, list)) % 10007;
+    private static int logic(int num) {
+        int[] list = new int[num + 1];
+        for (int i = 0; i <= num; i++) {
+            if (i <= 2) list[i] = i;
+            else list[i] = (list[i - 1] + list[i - 2]) % 10007;
+        }
+        return list[num];
     }
 }
