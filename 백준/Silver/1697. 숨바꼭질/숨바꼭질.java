@@ -3,44 +3,41 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] split = br.readLine().split(" ");
-        int N = Integer.parseInt(split[0]);
-        int K = Integer.parseInt(split[1]);
-        boolean[] check = new boolean[100000 + 1];
-        int num =  logic(N, K, 0, check);
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+        boolean[] check = new boolean[100001];
+        int num = logic(N, K, check);
         System.out.println(num);
     }
 
-    private static int logic(int n, int k, int count, boolean[] check) {
-        Queue<Integer> queue = new LinkedList<>();
-        queue.add(n);
-        queue.add(-1);
-        int index = 0;
-        while (n != k) {
-            n = queue.poll();
+    private static int logic(int n, int k, boolean[] check) {
+        Queue<int[]> queue = new LinkedList<>();
+        queue.add(new int[]{n, 0});
+        int index;
+        while (true) {
+            int[] poll = queue.poll();
+            n = poll[0];
+            index = poll[1];
+            if (n == k) break;
             check[n] = true;
-            index = queue.poll();
             index++;
             int minus = n - 1;
             int plus = n + 1;
             int dou = n * 2;
-            if (minus >= 0 && !check[minus]) {
-                queue.add(minus);
-                queue.add(index);
-            }
-            if (plus <= 100000 && !check[plus]) {
-                queue.add(plus);
-                queue.add(index);
-            }
-            if (dou <= 100000 && !check[dou]) {
-                queue.add(dou);
-                queue.add(index);
-            }
+            if (range(minus) && !check[minus]) queue.add(new int[]{minus, index});
+            if (range(plus) && !check[plus]) queue.add(new int[]{plus, index});
+            if (range(dou) && !check[dou]) queue.add(new int[]{dou, index});
         }
         return index;
+    }
+
+    private static boolean range(int num) {
+        return num >= 0 && num <= 100000;
     }
 }
