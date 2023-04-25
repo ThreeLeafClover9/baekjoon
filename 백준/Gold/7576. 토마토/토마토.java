@@ -22,18 +22,21 @@ public class Main {
             }
         }
         logic(matrix, M, N, queue);
-        int result = 0;
-        outer:
+        int max = max(matrix);
+        System.out.println(max);
+    }
+
+    private static int max(int[][] matrix) {
+        int max = 0;
         for (int[] ints : matrix) {
             for (int num : ints) {
-                if (num > result) result = num;
+                if (num > max) max = num;
                 if (num == 0) {
-                    result = 0;
-                    break outer;
+                    return -1;
                 }
             }
         }
-        System.out.println(result - 1);
+        return max - 1;
     }
 
     private static void logic(int[][] matrix, int M, int N, Queue<int[]> queue) {
