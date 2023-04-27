@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -17,10 +16,9 @@ public class Main {
             Map<String, Integer> map = new HashMap<>();
             for (int j = 0; j < n; j++) {
                 st = new StringTokenizer(br.readLine());
-                String value = st.nextToken();
+                st.nextToken();
                 String key = st.nextToken();
-                if (map.containsKey(key)) map.put(key, map.get(key) + 1);
-                else map.put(key, 1);
+                map.put(key, map.getOrDefault(key, 0) + 1);
             }
             int passion = passion(map);
             sb.append(passion).append("\n");
@@ -30,10 +28,8 @@ public class Main {
 
     private static int passion(Map<String, Integer> map) {
         int num = 1;
-        Set<String> strings = map.keySet();
-        for (String string : strings) {
-            Integer integer = map.get(string);
-            num *= integer + 1;
+        for (Integer value : map.values()) {
+            num *= value + 1;
         }
         return num - 1;
     }
