@@ -12,7 +12,6 @@ public class Main {
 
     private static int squares(int n) {
         int[] arr = new int[n + 1];
-//        arr[1] = 1;
         for (int i = 1; i <= n; i++) {
             int num = arr[i - 1];
             for (int j = 2; j * j <= i; j++) {
