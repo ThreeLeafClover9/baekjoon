@@ -13,13 +13,29 @@ public class Main {
     }
 
     private static int ioioi(int n, String s) {
-        String str = "I";
-        str += "OI".repeat(n);
+//        String str = "I";
+//        str += "OI".repeat(n);
         int len = 2 * n + 1;
         int result = 0;
         for (int i = 0; i <= s.length() - len; i++) {
-            String substring = s.substring(i, i + len);
-            if (str.equals(substring)) result++;
+            if (s.charAt(i) != 'I') continue;
+            boolean check = true;
+            for (int j = 1; j < len; j++) {
+                if (j % 2 == 0) {
+                    if (s.charAt(i + j) != 'I') {
+                        check = false;
+                        break;
+                    }
+                } else {
+                    if (s.charAt(i + j) != 'O') {
+                        check = false;
+                        break;
+                    }
+                }
+            }
+            if (check) result++;
+//            String substring = s.substring(i, i + len);
+//            if (str.equals(substring)) result++;
         }
         return result;
     }
