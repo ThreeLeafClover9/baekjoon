@@ -8,7 +8,10 @@ public class Main {
         int N = Integer.parseInt(br.readLine());
         int M = Integer.parseInt(br.readLine());
         String S = br.readLine();
-        int ioioi = ioioi(N, S);
+        int ioioi = 0;
+        if (N > 0 && M > 0) {
+            ioioi = ioioi(N, S);
+        }
         System.out.println(ioioi);
     }
 
