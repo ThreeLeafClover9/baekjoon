@@ -15,13 +15,12 @@ public class Main {
         int M = Integer.parseInt(st.nextToken());
         st = new StringTokenizer(br.readLine());
         int[] base = new int[N];
-        boolean[] check = new boolean[N];
         for (int i = 0; i < N; i++) {
             base[i] = Integer.parseInt(st.nextToken());
         }
         Arrays.sort(base);
         List<int[]> list = new ArrayList<>();
-        nAndM(0, N, M, list, new int[M], 0, base, check);
+        nAndM(0, N, M, list, new int[M], 0, base);
         for (int[] ints : list) {
             for (int anInt : ints) {
                 sb.append(anInt).append(" ");
@@ -31,17 +30,14 @@ public class Main {
         System.out.println(sb);
     }
 
-    private static void nAndM(int start, int N, int M, List<int[]> list, int[] arr, int index, int[] base, boolean[] check) {
+    private static void nAndM(int start, int N, int M, List<int[]> list, int[] arr, int index, int[] base) {
         if (index == M) {
             list.add(Arrays.copyOf(arr, arr.length));
             return;
         }
         for (int i = start; i < N; i++) {
-//            if (check[i]) continue;
-//            check[i] = true;
             arr[index] = base[i];
-            nAndM(i, N, M, list, arr, index + 1, base, check);
-//            check[i] = false;
+            nAndM(i, N, M, list, arr, index + 1, base);
         }
     }
 }
