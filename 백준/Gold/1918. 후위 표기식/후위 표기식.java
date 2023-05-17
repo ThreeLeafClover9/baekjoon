@@ -18,17 +18,10 @@ public class Main {
             char c = str.charAt(i);
             if (Character.isAlphabetic(c)) queue.add(String.valueOf(c));
             else if (c == '+' || c == '-') {
-                if (order) {
-                    while (!queue.isEmpty()) sb.append(queue.poll());
-                    while (!operator.isEmpty()) sb.append(operator.pop());
-                    operator.add(String.valueOf(c));
-                    order = true;
-                } else {
-                    while (!queue.isEmpty()) sb.append(queue.poll());
-                    while (!operator.isEmpty()) sb.append(operator.pop());
-                    operator.add(String.valueOf(c));
-                    order = true;
-                }
+                while (!queue.isEmpty()) sb.append(queue.poll());
+                while (!operator.isEmpty()) sb.append(operator.pop());
+                operator.add(String.valueOf(c));
+                order = true;
             } else {
                 if (c == '*' || c == '/') {
                     while (!queue.isEmpty()) sb.append(queue.poll());
@@ -46,7 +39,6 @@ public class Main {
                         c = str.charAt(++i);
                     }
                     queue.add(backwardNotation(newSb.toString()));
-//                    order = true;
                 }
             }
         }
