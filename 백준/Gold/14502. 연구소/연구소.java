@@ -29,14 +29,9 @@ public class Main {
         if (step == 3) {
             int[][] newMatrix = new int[N][M];
             for (int i = 0; i < N; i++) {
-                for (int j = 0; j < M; j++) {
-                    newMatrix[i][j] = matrix[i][j];
-                }
+                System.arraycopy(matrix[i], 0, newMatrix[i], 0, M);
             }
-            Queue<int[]> newQueue = new LinkedList<>();
-            for (int[] arr : queue) {
-                newQueue.add(arr);
-            }
+            Queue<int[]> newQueue = new LinkedList<>(queue);
             return count(newMatrix, newQueue, N, M);
         }
         for (int i = 0; i < N; i++) {
@@ -59,9 +54,9 @@ public class Main {
             int[] poll = queue.poll();
             int n = poll[0];
             int m = poll[1];
-            for (int i = 0; i < DIR.length; i++) {
-                int dirN = DIR[i][0] + n;
-                int dirM = DIR[i][1] + m;
+            for (int[] ints : DIR) {
+                int dirN = ints[0] + n;
+                int dirM = ints[1] + m;
                 if (check(dirN, dirM, N, M) && (matrix[dirN][dirM] == 0 || matrix[dirN][dirM] > matrix[n][m] + 1)) {
                     matrix[dirN][dirM] = matrix[n][m] + 1;
                     queue.add(new int[]{dirN, dirM});
