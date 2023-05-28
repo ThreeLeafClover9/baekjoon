@@ -49,32 +49,16 @@ public class Main {
                     }
                 }
             }
-            Integer integer = cleaner.get(0);
-            for (int j = integer - 2; j >= 0; j--) {
-                tmp[j + 1][0] = tmp[j][0];
-            }
-            for (int j = 1; j < C; j++) {
-                tmp[0][j - 1] = tmp[0][j];
-            }
-            for (int j = 1; j <= integer; j++) {
-                tmp[j - 1][C - 1] = tmp[j][C - 1];
-            }
-            for (int j = C - 2; j >= 0; j--) {
-                tmp[integer][j + 1] = tmp[integer][j];
-            }
-            integer = cleaner.get(1);
-            for (int j = integer + 2; j < R; j++) {
-                tmp[j - 1][0] = tmp[j][0];
-            }
-            for (int j = 1; j < C; j++) {
-                tmp[R - 1][j - 1] = tmp[R - 1][j];
-            }
-            for (int j = R - 2; j >= integer; j--) {
-                tmp[j + 1][C - 1] = tmp[j][C - 1];
-            }
-            for (int j = C - 2; j >= 0; j--) {
-                tmp[integer][j + 1] = tmp[integer][j];
-            }
+            Integer top = cleaner.get(0);
+            for (int j = top - 2; j >= 0; j--) tmp[j + 1][0] = tmp[j][0];
+            for (int j = 1; j < C; j++) tmp[0][j - 1] = tmp[0][j];
+            for (int j = 1; j <= top; j++) tmp[j - 1][C - 1] = tmp[j][C - 1];
+            for (int j = C - 2; j >= 0; j--) tmp[top][j + 1] = tmp[top][j];
+            Integer bottom = cleaner.get(1);
+            for (int j = bottom + 2; j < R; j++) tmp[j - 1][0] = tmp[j][0];
+            for (int j = 1; j < C; j++) tmp[R - 1][j - 1] = tmp[R - 1][j];
+            for (int j = R - 2; j >= bottom; j--) tmp[j + 1][C - 1] = tmp[j][C - 1];
+            for (int j = C - 2; j >= 0; j--) tmp[bottom][j + 1] = tmp[bottom][j];
             matrix = tmp;
         }
         return matrix;
