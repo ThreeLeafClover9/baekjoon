@@ -34,15 +34,14 @@ public class Main {
         PriorityQueue<int[]> queue = new PriorityQueue<>(Arrays::compare);
         queue.add(new int[]{0, start});
         while (!queue.isEmpty()) {
-            int max = result[end];
             int[] poll = queue.poll();
             int length = poll[0];
             int index = poll[1];
-            if (length > max) continue;
+            if (length > result[end]) continue;
             for (int[] arr : listArr[index]) {
                 int newIndex = arr[0];
                 int newLength = length + arr[1];
-                if (result[newIndex] > newLength && newLength < max) {
+                if (result[newIndex] > newLength) {
                     result[newIndex] = newLength;
                     pre[newIndex] = index;
                     queue.add(new int[]{newLength, newIndex});
