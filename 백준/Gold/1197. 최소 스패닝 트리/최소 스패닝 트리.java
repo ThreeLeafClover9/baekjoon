@@ -15,16 +15,16 @@ public class Main {
             int C = Integer.parseInt(st.nextToken());
             queue.add(new int[]{C, A, B});
         }
-        long min = min(queue, V);
+        int min = min(queue, V);
         System.out.println(min);
     }
 
-    private static long min(PriorityQueue<int[]> queue, int V) {
+    private static int min(PriorityQueue<int[]> queue, int V) {
         int[] parent = new int[V + 1];
         for (int i = 1; i <= V; i++) {
             parent[i] = i;
         }
-        long result = 0;
+        int result = 0;
         int count = 0;
         while (count < V - 1) {
             int[] poll = queue.poll();
