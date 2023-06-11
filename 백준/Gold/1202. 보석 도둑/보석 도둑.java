@@ -28,14 +28,27 @@ public class Main {
         Arrays.sort(bag);
         PriorityQueue<Integer> queue = new PriorityQueue<>(Comparator.reverseOrder());
         long result = 0;
-        for (int i = 0, j = 0; i < k; i++) {
-            while (j < n && base[j][0] <= bag[i]) {
-                queue.offer(base[j++][1]);
+        int startt = 0;
+        for (int i = 0; i < k; i++) {
+            int max = bag[i];
+            while (startt < n && base[startt][0] <= max) {
+                queue.offer(base[startt][1]);
+                startt++;
             }
-            if (!queue.isEmpty()) {
-                result += queue.poll();
-            }
+            if (!queue.isEmpty())  result += queue.poll();
         }
+//        int start = 0;
+//        for (int i = 0; i < k; i++) {
+//            int max = bag[i];
+//            for (int j = start; j < n; j++) {
+//                if (base[j][0] <= max) queue.offer(base[j][1]);
+//                else {
+//                    start = j;
+//                    break;
+//                }
+//            }
+//            if (!queue.isEmpty()) result += queue.poll();
+//        }
         return result;
     }
 }
