@@ -10,7 +10,7 @@ public class Main {
         for (int i = 0; i < n; i++) {
             base[i] = Integer.parseInt(st.nextToken());
         }
-        int[] result = new int[n + 1];
+        int[] result = new int[n];
         Arrays.fill(result, Integer.MAX_VALUE);
         int part = part(base, result, n);
         System.out.println(part);
@@ -18,22 +18,21 @@ public class Main {
 
     private static int part(int[] base, int[] result, int n) {
         for (int i = 0; i < n; i++) {
-            int num = base[i];
-            find(result, num, 0, n);
+            find(result, base[i], 0, n - 1);
         }
         int max = 0;
-        for (int i = 0; i <= n; i++) {
+        for (int i = 0; i < n; i++) {
             if (result[i] != Integer.MAX_VALUE) max = i;
         }
-        return max;
+        return max + 1;
     }
 
     private static void find(int[] result, int num, int start, int end) {
-        while (start < end - 1) {
+        while (start < end) {
             int mid = (start + end) / 2;
             if (num <= result[mid]) end = mid;
-            else start = mid;
+            else start = mid + 1;
         }
-        result[start + 1] = num;
+        result[start] = num;
     }
 }
